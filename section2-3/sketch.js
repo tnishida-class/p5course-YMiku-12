@@ -4,8 +4,9 @@
 function setup(){
   createCanvas(100, 100);
   for(let i = 0; i < 10; i++){
+    fill(i % 2 == 0 ? 255 : 0);
     for(let j = 0; j < 10; j++){
-      fill(j % 2 == 0 ? 255 : 0); // ここを変えます
+      //fill(j % 2 == 0 ? 255 : 0);  ここを変えます
       console.log(i, j);
       rect(i * 10, j * 10, 5, 5);
     }
