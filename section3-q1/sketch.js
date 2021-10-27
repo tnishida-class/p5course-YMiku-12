@@ -1,52 +1,35 @@
-// 練習問題「太陽と地球と月」
-let x, y, r, vr,  a, va, b, vb;
+// 練習問題
+let x, y, r, vr;
 
 function setup(){
   createCanvas(windowWidth, windowHeight);
   x = width / 2;
   y = height / 2;
-  r = 50;
+  r = width / 20;
   vr = 1;
-  a = 0;
-  va = PI / 365;
-  b = 0;
-  vb = PI * 12 / 365;
 }
 
 function draw(){
   noStroke();
-  background(34, 58, 112);
-  //太陽
-  fill(255, 0, 0); //赤
+  background(175, 223, 228);//水色
+  fill(255, 192, 203); //ピンク
   ellipse(x, y, r, r);
-  //地球
-  fill(0, 0, 255); //青
-  ellipse(x + 150 * sin(a), y + 150 * cos(a), r / 3, r / 3);
-  //月
-  fill(255, 255, 0); //黄
-  ellipse((x + 150 * sin(a)) + sin(b) * 20, (y + 150 * cos(a)) + cos(b) * 20, r / 6, r / 6);
-  a += va;
-  b += vb;
-  //右矢印を押すと地球と月の速度が上がる
-  if(keyIsDown(RIGHT_ARROW)){ va += PI / 365, vb += PI * 12 / 365; }
-  //左矢印を押している間、太陽と地球と月のサイズが変わる
+  let rmin, rmax;
+  rmin = width / 25;
+  rmax = width / 15;
+  if(r < rmin || rmax < r){
+          vr *= -1;
+      }
+      r += vr;
+  //左矢印を押している間、速くなる
   if(keyIsDown(LEFT_ARROW)){
     let rmin, rmax;
-    rmin = 25;
-    rmax = 100;
+    rmin = width / 25;
+    rmax = width / 15;
     if(r < rmin || rmax < r){
             vr *= -1;
         }
         r += vr;
-  }
-}
-function keyPressed(){
-  if(key == " "){　// スペースキーを押したらリセット
-    x = width / 2;
-    y = height / 2;
-    r = 50;
-    va = PI / 365;
-    vb = PI * 12 / 365;
   }
 }
 
