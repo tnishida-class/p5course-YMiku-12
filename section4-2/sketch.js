@@ -22,11 +22,21 @@ function draw(){
 function mouseDragged(){
   const dx = mouseX - pmouseX;
   const dy = mouseY - pmouseY;
+  const ds = random(10, 80);
   if(mag(dx, dy) > 5){
-    const b = { x: mouseX, y: mouseY, size: 20, vx: dx, vy: dy };
+    const b = { x: mouseX, y: mouseY, size: ds, vx: dx, vy: dy };
     balls.push(b);
   }
 }
+
+function createBalls(){
+  const dx = random(1, 15);
+  const dy = random(1, 15);
+  const ds = random(10, 80);
+  const b = { x: width / 2, y: height / 2, size: ds, vx: dx, vy: dy };
+  balls.push(b);
+}
+setInterval(createBalls, 500);
 
 function windowResized(){
   resizeCanvas(windowWidth, windowHeight);
