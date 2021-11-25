@@ -7,15 +7,21 @@ let balls;
 function setup(){
   createCanvas(windowWidth, windowHeight);
   balls = [];
+  count= 0;
 }
 
 function draw(){
+  count++;
   background(160, 192, 255);
   for(let i = 0; i < balls.length; i++){
     let b = balls[i];
     ellipse(b.x, b.y, b.size);
     b.x += b.vx;
     b.y += b.vy;
+  }
+  if(count % 60 == 0){
+    const b = { x: width / 2, y: height / 2, size: 20, vx: random(2) - 1, vy: random(2) - 1 };
+    balls.push(b);
   }
 }
 
@@ -29,14 +35,14 @@ function mouseDragged(){
   }
 }
 
-function createBalls(){
-  const dx = random(1, 15);
-  const dy = random(1, 15);
-  const ds = random(10, 80);
-  const b = { x: width / 2, y: height / 2, size: ds, vx: dx, vy: dy };
-  balls.push(b);
-}
-setInterval(createBalls, 500);
+// function createBalls(){
+//   const dx = random(1, 15);
+//   const dy = random(1, 15);
+//   const ds = random(10, 80);
+//   const b = { x: width / 2, y: height / 2, size: ds, vx: dx, vy: dy };
+//   balls.push(b);
+// }
+
 
 function windowResized(){
   resizeCanvas(windowWidth, windowHeight);
