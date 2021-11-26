@@ -2,15 +2,17 @@
 // 練習問題：ボールのサイズをランダムに変更してみよう
 // 練習問題：何も操作しなくてもボールが湧いてくる機能を追加しよう
 
+
 let balls;
 
 function setup(){
   createCanvas(windowWidth, windowHeight);
   balls = [];
-  count= 0;
+  count = 0;
 }
 
 function draw(){
+  noStroke();
   count++;
   background(160, 192, 255);
   for(let i = 0; i < balls.length; i++){
@@ -19,8 +21,8 @@ function draw(){
     b.x += b.vx;
     b.y += b.vy;
   }
-  if(count % 60 == 0){
-    const b = { x: width / 2, y: height / 2, size: 20, vx: random(2) - 1, vy: random(2) - 1 };
+  if(count % 10 == 0){
+    const b = { x: random(0, width), y: -10, size: random(5, 12), vx: random(-1, 1), vy: random(1, 2)};
     balls.push(b);
   }
 }
@@ -28,21 +30,12 @@ function draw(){
 function mouseDragged(){
   const dx = mouseX - pmouseX;
   const dy = mouseY - pmouseY;
-  const ds = random(10, 80);
+  const ds = random(10, 20);
   if(mag(dx, dy) > 5){
     const b = { x: mouseX, y: mouseY, size: ds, vx: dx, vy: dy };
     balls.push(b);
   }
 }
-
-// function createBalls(){
-//   const dx = random(1, 15);
-//   const dy = random(1, 15);
-//   const ds = random(10, 80);
-//   const b = { x: width / 2, y: height / 2, size: ds, vx: dx, vy: dy };
-//   balls.push(b);
-// }
-
 
 function windowResized(){
   resizeCanvas(windowWidth, windowHeight);
